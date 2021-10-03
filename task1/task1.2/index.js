@@ -2,8 +2,8 @@ const express = require('express');
 
 const app = express();
 
-const LIMIT = 20;
-const DELAY = 1000;
+const LIMIT = process.env.LIMIT || 20;
+const DELAY = process.env.DELAY || 1000;
 const PORT = 3000;
 
 let connections = [];
@@ -16,9 +16,9 @@ app.get('/date', (req, res, next) => {
 
 let tick = 0;
 setTimeout(function run () {
-  console.log(tick);
+  console.log(`${new Date(new Date().toUTCString())}`);
   if (++tick > LIMIT) {
-    connections.map(() => {
+    connections.map((res) => {
         res.write('END\n');
         res.end();
     });
@@ -26,7 +26,7 @@ setTimeout(function run () {
     tick = 0;
   }
   connections.map((res, index) => {
-    res.write(`Hello ${index}! Tick: ${tick}.\n`);
+    res.write(`${new Date(new Date().toUTCString())}\n`);
   });
   setTimeout(run, DELAY);
 }, DELAY);
@@ -34,3 +34,4 @@ setTimeout(function run () {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
