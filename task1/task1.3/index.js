@@ -5,8 +5,8 @@ const path = require('path');
 
 const startDir = process.argv[2];
 const resultDir = process.argv[3];
-const level = 3; // оставил жёско заданную вложенность
-const isDeleteStartDir = process.argv[4] === 'true' ? true : false;
+const level = +process.argv[4] || 3;
+const isDeleteStartDir = process.argv[5] === 'true' ? true : false;
 
 if (!startDir) {
     console.log('Specify the start directory');
