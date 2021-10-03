@@ -64,7 +64,9 @@ const transformFiles = (base, result, currentLevel, isDelete) => {
           // }
 
               if (--currentLevel === 0) {
-                del.sync([startDir]);
+                if (isDelete) {
+                  del.sync([startDir]);
+                }
                 resolve();
                 return;
               }
