@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/JIlyaS/node-course/issues"
   },
-  "homepage": "https://github.com/JIlyaS/node-course#readme"
+  "homepage": "https://github.com/JIlyaS/node-course#readme",
+  "dependencies": {
+    "del": "^6.0.0"
+  }
 }
