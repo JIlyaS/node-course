@@ -1,12 +1,10 @@
-const fsPromises = require('fs').promises;
-const fs = require('fs');
 const del = require('del');
+const fs = require('fs').promises;
 const path = require('path');
 
 const startDir = process.argv[2];
 const resultDir = process.argv[3];
-const level = +process.argv[4] || 3;
-const isDeleteStartDir = process.argv[5] === 'true' ? true : false;
+const deleteFlag = process.argv[4] === 'true' ? true : false;
 
 if (!startDir) {
     console.log('Specify the start directory');
@@ -18,69 +16,93 @@ if (!resultDir) {
     return;
 }
 
-const transformFiles = (base, result, currentLevel, isDelete) => {
-  return new Promise(async (resolve, reject) => {
-    if (currentLevel === 0) {
-      resolve();
-      return;
-    }
+const transformFiles = async (base, result, deleteFlag) => {
+  try {
+    await fs.access(base);
+  } catch (err) {
+    console.error(err);
+    throw new Error('Ошибка проверки исходной папки');
+  }
+
+  try {
+    await fs.access(result);
+  } catch (err) {
     try {
-      const files = await fsPromises.readdir(base);
-
-      files.forEach(async (item) => {
-        let localBase = path.join(base, item);
-        let state = await fsPromises.stat(localBase);
-        if (state.isDirectory()) {
-          await transformFiles(localBase, result, currentLevel - 1, isDelete);
-        } else {
-
-          if ( !fs.existsSync(result) ) {
-            await fsPromises.mkdir(result)
-          }
-
-          const innerDir =  item[0].toUpperCase();
-
-          if ( !fs.existsSync(path.join(result, innerDir)) ) {
-            await fsPromises.mkdir(path.join(result, innerDir))
-          }
-
-          if ( !fs.existsSync(path.join(result, innerDir, item)) ) {
-            await fsPromises.link(path.join(base, item), path.join(resultDir, innerDir, item));
-          }
-
-          // if (isDelete) {
-          //   await fsPromises.unlink(path.join(base, item));
-
-          //   const countBaseDir = fs.readdirSync(base).length;
-          //   const countStartDir = fs.readdirSync(startDir).length;
-
-          //   if (countBaseDir === 0) {
-          //     await fsPromises.rmdir(base);
-          //   }
-
-          //   if (countStartDir === 0) {
-          //     await fsPromises.rmdir(startDir);
-          //   }
-          // }
-
-              if (--currentLevel === 0) {
-                if (isDelete) {
-                  del.sync([startDir]);
-                }
-                resolve();
-                return;
-              }
-        }
-      });
+      await fs.mkdir(result);
     } catch (err) {
       console.error(err);
-      return;
+      throw new Error('Ошибка создания результирующей папки');
     }
-  });
+  }
+
+  try {
+    const files = await fs.readdir(base);
+
+    files.forEach(async (item) => {
+        let localBase = path.join(base, item);
+        try {
+          const state = await fs.stat(localBase);
+
+          if (state.isDirectory()) {
+            transformFiles(localBase, result, deleteFlag);
+          } else {
+            const resultInnerDir =  item[0].toUpperCase();
+
+            try {
+              await fs.access(path.join(resultDir, resultInnerDir));
+            } catch (err) {
+              try {
+                await fs.mkdir(path.join(resultDir, resultInnerDir));
+              } catch (err) {}
+            }
+
+            if (deleteFlag) {
+              try {
+                await fs.rename(path.join(base, item), path.join(resultDir, resultInnerDir, item));
+              } catch (err) {
+                try {
+                  await fs.copyFile(path.join(base, item), path.join(resultDir, resultInnerDir, item));
+                } catch (err) {
+                  console.error(err);
+                  throw new Error('Ошибка копирования файла');
+                }
+
+                try {
+                  await fs.unlink(path.join(base, item));
+                } catch (err) {
+                  console.error(err);
+                  throw new Error('Ошибка удаления файла');
+                }
+              }
+            } else {
+              try {
+                await fs.copyFile(path.join(base, item), path.join(resultDir, resultInnerDir, item));
+              } catch (err) {
+                console.error(err);
+                throw new Error('Ошибка копирования файла');
+              }
+            }
+          }
+        } catch (err) {
+          console.error(err);
+          throw new Error('Ошибка проверки файла');
+        }
+      });
+  } catch (err) {
+    console.error(err);
+    throw new Error('Ошибка чтения директории');
+  }
 }
 
-transformFiles(startDir, resultDir, level, isDeleteStartDir).then(() => {
-		console.log('Success');
-}, () => {
-  console.log('Fail');
-});
+try {
+  transformFiles(startDir, resultDir, deleteFlag).then(() => {
+    console.log('Success');
+    if (deleteFlag) {
+      del(startDir);
+    }
+  }, () => {
+    console.log('Fail');
+  });
+} catch (err) {
+  console.error(err);
+}

@@ -2,8 +2,8 @@ const express = require('express');
 
 const app = express();
 
-const LIMIT = process.env.LIMIT || 20;
-const DELAY = process.env.DELAY || 1000;
+const DATE_END = process.env.DATE_END;
+const DELAY = process.env.DELAY;
 const PORT = 3000;
 
 let connections = [];
@@ -12,18 +12,21 @@ app.get('/date', (req, res, next) => {
  res.setHeader('Content-Type', 'text/html; charset=utf-8');
  res.setHeader('Transfer-Encoding', 'chunked');
  connections.push(res);
+
+ if (+new Date(new Date()) >= +new Date(DATE_END)) {
+    res.write(`Current date: ${new Date(new Date().toUTCString())}\n`);
+    res.end();
+ }
 });
 
-let tick = 0;
 setTimeout(function run () {
   console.log(`${new Date(new Date().toUTCString())}`);
-  if (++tick > LIMIT) {
+  if (+new Date(new Date()) >= +new Date(DATE_END)) {
     connections.map((res) => {
-        res.write('END\n');
+        res.write(`Current date: ${new Date(new Date().toUTCString())}\n`);
         res.end();
     });
     connections = [];
-    tick = 0;
   }
   connections.map((res, index) => {
     res.write(`${new Date(new Date().toUTCString())}\n`);

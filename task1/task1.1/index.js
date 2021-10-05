@@ -19,6 +19,7 @@ if (!resultDir) {
 const transformFiles = (base, result, deleteFlag) => {
   fs.access(base, (err) => {
     if (err) {
+      console.error(err);
       throw new Error('Ошибка проверки исходной папки');
     }
 
@@ -27,63 +28,69 @@ const transformFiles = (base, result, deleteFlag) => {
       if (err) {
         fs.mkdir(result, (err) => {
           if (err) {
+            console.error(err);
             throw new Error('Ошибка создания результирующей папки');
           }
         });
       }
-    });
 
-    fs.readdir(base, (err, files) => {
+      fs.readdir(base, (err, files) => {
 
-      if (err) {
-        throw new Error('Ошибка чтения директории');
-      }
+        if (err) {
+          console.error(err);
+          throw new Error('Ошибка чтения директории');
+        }
 
-      files.forEach((item) => {
-        let localBase = path.join(base, item);
-        fs.stat(localBase, (err, state) => {
-          if (err) {
-            throw new Error('Ошибка проверки файла');
-          }
+        files.forEach((item) => {
+          let localBase = path.join(base, item);
+          fs.stat(localBase, (err, state) => {
+            if (err) {
+              console.error(err);
+              throw new Error('Ошибка проверки файла');
+            }
 
-          if (state.isDirectory()) {
-            transformFiles(localBase, result, deleteFlag);
-          } else {
-            const resultInnerDir =  item[0].toUpperCase();
+            if (state.isDirectory()) {
+              transformFiles(localBase, result, deleteFlag);
+            } else {
+              const resultInnerDir =  item[0].toUpperCase();
 
-            fs.access(path.join(resultDir, resultInnerDir), (err) => {
-              if (err) {
-                fs.mkdir(path.join(resultDir, resultInnerDir), (err) => {
-                  if (err) {}
-                })
-              }
+              fs.access(path.join(resultDir, resultInnerDir), (err) => {
+                if (err) {
+                  fs.mkdir(path.join(resultDir, resultInnerDir), (err) => {
+                    if (err) {}
+                  })
+                }
 
-              if (deleteFlag) {
-                fs.rename(path.join(base, item), path.join(resultDir, resultInnerDir, item), (err) => {
-                  if (err) {
-                    fs.copyFile(path.join(base, item), path.join(resultDir, resultInnerDir, item), (err) => {
-                      if (err) {
-                        throw new Error('Ошибка копирования файла');
-                      }
-
-                      fs.unlink(path.join(base, item), (err) => {
+                if (deleteFlag) {
+                  fs.rename(path.join(base, item), path.join(resultDir, resultInnerDir, item), (err) => {
+                    if (err) {
+                      fs.copyFile(path.join(base, item), path.join(resultDir, resultInnerDir, item), (err) => {
                         if (err) {
-                          throw new Error('Ошибка удаления файла');
+                          console.error(err);
+                          throw new Error('Ошибка копирования файла');
                         }
+
+                        fs.unlink(path.join(base, item), (err) => {
+                          if (err) {
+                            console.error(err);
+                            throw new Error('Ошибка удаления файла');
+                          }
+                        });
                       });
-                    });
-                  }
-                });
-              } else {
-                fs.copyFile(path.join(base, item), path.join(resultDir, resultInnerDir, item), (err) => {
-                  if (err) {
-                    throw new Error('Ошибка копирования файла');
-                  }
-                });
-              }
-            });
-          }
-        })
+                    }
+                  });
+                } else {
+                  fs.copyFile(path.join(base, item), path.join(resultDir, resultInnerDir, item), (err) => {
+                    if (err) {
+                      console.error(err);
+                      throw new Error('Ошибка копирования файла');
+                    }
+                  });
+                }
+              });
+            }
+          })
+        });
       });
     });
   });
