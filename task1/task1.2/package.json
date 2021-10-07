@@ -1,0 +1,16 @@
+{
+  "name": "task1.2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env DATE_END=\"Wed Oct 06 2021 00:39:10 GMT+0500 (Екатеринбург, стандартное время)\" DELAY=2000 node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "express": "^4.17.1"
+  }
+}
