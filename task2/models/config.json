@@ -1,0 +1,98 @@
+{
+  "user": {
+    "login": "ilkolmakov@yandex.ru",
+    "hash": "d29bf31977ae50428136293dab5d106c5834e41c95febe93c1b4db9b85c464afc79b6283bc94f2b2f3b493fb4d05d571652329d3d092314368de3cf8944491636104863ad39911c4a0f721ae2e60054aa6d783bf78b1d4614802bab03758676f0f2dcfe5ae8e36937e313a9166e78b8a493144bf8670105d1a7053d10c0fe34fee7796e27ac61aa06f5a010af77c6b990e84e399fa9ee6443cd312002228606ea3ec3e15fafad258ee11f375467ce27058a272db0c4e46348d2d72e93628511f7b82a61c9806cf1e0edde757fd01bc437c90f06a91874f1c4e753e0987958c028235e812c2509f343c5bacae2581b8c8b8f3ec176559b26c722eb60ce3b69f2f955ca1f524e4fc40ef1bbfbcdba47f964309b7c964526addf3095bd81771cdc991db340779e8c9b0c659c5ff2e9c75bceab0ed3a2ccc53a8a0ed153476d33d07e4f839b00db82d5dfb6b542fd451f039c9b01d7d8811d8f3d432c9fbfe29ac891278f53a460d29807bf8b1291989bfe279116b8136382afe7fcaa37c3d633cee852541c0e84cf830d3ce3edd9605357394828901c40fb22e4010d822edbc66ce737ecced69cd70df723bbb0084ad89d71ff4b9d9aa6712eb3df9ee2007d59c73eedd199c193b4124a9b9a1c77433b79efe840d3d04e684170922b6d472de2c76dd61de38efdda9fb1f1629bc2e8d2839b0b31985a41e4e34d1d96e3d65a10416",
+    "salt": "75d5d29fdcd857590b77d3dec83eb26b"
+  },
+  "mail": {
+    "subject": "Сообщение с сайта",
+    "smtp": {
+      "host": "smtp.gmail.com",
+      "port": 465,
+      "secure": true,
+      "auth": {
+        "user": "iliakolmakovtest@gmail.com",
+        "pass": "IlyaKolmakov16061993"
+      }
+    }
+  },
+  "skills": [
+    {
+      "age": "12",
+      "concerts": "14",
+      "cities": "12",
+      "years": "32"
+    },
+    {
+      "age": "12",
+      "concerts": "31",
+      "cities": "23",
+      "years": "43"
+    }
+  ],
+  "mainSkills": [
+    {
+      "number": 12,
+      "text": "Возраст начала занятий на скрипке"
+    },
+    {
+      "number": 76,
+      "text": "Концертов отыграл"
+    },
+    {
+      "number": 30,
+      "text": "Максимальное число городов в туре"
+    },
+    {
+      "number": 20,
+      "text": "Лет на сцене в качестве скрипача"
+    }
+  ],
+  "products": [
+    {
+      "src": "./assets/img/products/Work1.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work2.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work3.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work4.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work5.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work6.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work7.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work8.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work9.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    }
+  ]
+}
