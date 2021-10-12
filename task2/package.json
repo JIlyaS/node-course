@@ -29,6 +29,7 @@
     "crypto": "^1.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
+    "formidable": "^1.2.2",
     "http-errors": "^1.8.0",
     "lowdb": "^3.0.0",
     "morgan": "^1.10.0",

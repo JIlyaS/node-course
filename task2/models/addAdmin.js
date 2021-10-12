@@ -1,7 +1,7 @@
-const readline = require('readline')
+const readline = require('readline');
 const rl = readline.createInterface({input: process.stdin, output: process.stdout})
-const db = require('./db.js')
-const psw = require('../libs/password')
+const db = require('./db.js')();
+const psw = require('../libs/password');
 
 let login = ''
 let hash = ''

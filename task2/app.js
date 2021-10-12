@@ -6,7 +6,7 @@ const express = require('express');
 const morgan = require('morgan');
 const session = require('express-session');
 
-const db = require('./models/db');
+const db = require('./models/db')();
 const psw = require('./lib/password');
 
 const mainRouter = require('./routes/')
@@ -40,7 +40,7 @@ app.use(session({
   resave: false
 }));
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', mainRouter)
 
@@ -62,7 +62,15 @@ app.use((err, req, res, next) => {
   res.render('error')
 })
 
-const server = app.listen(process.env.PORT || 3000, () => {
+const server = app.listen(process.env.PORT || 3000, async () => {
+
+  // Создание папки upload, если её нет
+  const upload = path.join('./public', 'upload');
+
+  if (!fs.existsSync(upload)) {
+    fs.mkdirSync(upload);
+  }
+
   const login = process.env.LOGIN;
   const pass = process.env.PASSWORD;
   const objPassword = psw.setPassword(pass)
@@ -72,11 +80,15 @@ const server = app.listen(process.env.PORT || 3000, () => {
   db.set('user:login', login);
   db.set('user:hash', hash);
   db.set('user:salt', salt);
-  // console.log(path.join(__dirname, '../models/config.json'));
 
   /* eslint-disable node/handle-callback-err */
-  db.save(function (err) {
-    fs.readFileSync(path.join(__dirname, '/models/config.json'));
+  await db.save(function (err) {
+    if (err) {
+      console.error(err.message);
+      return;
+    }
+    fs.readFileSync(path.join(__dirname, './models/config.json'));
   });
+
   console.log('Сервер запущен на порте: ' + server.address().port);
 })

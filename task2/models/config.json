@@ -1,9 +1,10 @@
 {
   "user": {
     "login": "ilkolmakov@yandex.ru",
-    "hash": "d29bf31977ae50428136293dab5d106c5834e41c95febe93c1b4db9b85c464afc79b6283bc94f2b2f3b493fb4d05d571652329d3d092314368de3cf8944491636104863ad39911c4a0f721ae2e60054aa6d783bf78b1d4614802bab03758676f0f2dcfe5ae8e36937e313a9166e78b8a493144bf8670105d1a7053d10c0fe34fee7796e27ac61aa06f5a010af77c6b990e84e399fa9ee6443cd312002228606ea3ec3e15fafad258ee11f375467ce27058a272db0c4e46348d2d72e93628511f7b82a61c9806cf1e0edde757fd01bc437c90f06a91874f1c4e753e0987958c028235e812c2509f343c5bacae2581b8c8b8f3ec176559b26c722eb60ce3b69f2f955ca1f524e4fc40ef1bbfbcdba47f964309b7c964526addf3095bd81771cdc991db340779e8c9b0c659c5ff2e9c75bceab0ed3a2ccc53a8a0ed153476d33d07e4f839b00db82d5dfb6b542fd451f039c9b01d7d8811d8f3d432c9fbfe29ac891278f53a460d29807bf8b1291989bfe279116b8136382afe7fcaa37c3d633cee852541c0e84cf830d3ce3edd9605357394828901c40fb22e4010d822edbc66ce737ecced69cd70df723bbb0084ad89d71ff4b9d9aa6712eb3df9ee2007d59c73eedd199c193b4124a9b9a1c77433b79efe840d3d04e684170922b6d472de2c76dd61de38efdda9fb1f1629bc2e8d2839b0b31985a41e4e34d1d96e3d65a10416",
-    "salt": "75d5d29fdcd857590b77d3dec83eb26b"
+    "hash": "7982df15d69218e8368d2b5498f98791bb88eb6dd99e3e4e19f8e6db486dd2ece3127f3a4331f300f26207f28652478e0b2a1ef40715110869a14b687774127516bbbb162079a2e857f579a3f5f5488c1fb39b44d5d3fa4aff87103464ba4b0790d021f2d732cff432ee20b2b42a605e3db8b11c848f55e50f20e550059b803dd413a05c90c0dda2ee988ddd05c40b58a51292e6eab4e97c7768bedc6e6d5116c4c7fda043efbada427be7f50e105cc606b137c2ecfc321121bc098ff83b7d2ae7f54b8d667d6e7678f2d92985afabccabcc43fa1fdc2007a87e63182cf5fc21d9c9d57859a64d7592977529c3b3072cb5f17a859d266e098e1aab7af7abecd5239ef55b218b1c9b46a394a577a8e3771a7e22ba55415206e6e940425369b9d86a6613165dc2ba7d08e004eab3ec4e0bcafb428b05350eee523fbbda8222b8a40e61c0d35401025babc28679f0c9526b1e4c56462908e53000f60399cb470dbe9d446dfe291e9a59920750109056eb9d46c2a2513a599963502a2afcf5a5e9c21ae583c553a6253b6cdc6508aea1bd8484246d3ac54e47dfc9ed8b98eba75c9a6052563ce0f7f79e65b1d17464541108e10c39545d96c97585995c7cfdf8dfdf528547d77d060316ec253a116e8875b85767667ed4c3388b1f351fa7af38c7f9c9945a6d54cb5a17daba3227534948770d8c00ab88b813b17cc66ee40c8d0545",
+    "salt": "b0d4d75cd1ba4d7ef2e08521a902db1a"
   },
+  "uploadFile": "",
   "mail": {
     "subject": "Сообщение с сайта",
     "smtp": {
@@ -16,35 +17,27 @@
       }
     }
   },
-  "skills": [
-    {
-      "age": "12",
-      "concerts": "14",
-      "cities": "12",
-      "years": "32"
-    },
-    {
-      "age": "12",
-      "concerts": "31",
-      "cities": "23",
-      "years": "43"
-    }
-  ],
+  "skills": {
+    "age": "42",
+    "concerts": "140",
+    "cities": "32",
+    "years": "16"
+  },
   "mainSkills": [
     {
-      "number": 12,
+      "number": "42",
       "text": "Возраст начала занятий на скрипке"
     },
     {
-      "number": 76,
+      "number": "140",
       "text": "Концертов отыграл"
     },
     {
-      "number": 30,
+      "number": "32",
       "text": "Максимальное число городов в туре"
     },
     {
-      "number": 20,
+      "number": "16",
       "text": "Лет на сцене в качестве скрипача"
     }
   ],
@@ -93,6 +86,46 @@
       "src": "./assets/img/products/Work9.jpg",
       "name": "Вино вдохновение",
       "price": 600
+    },
+    {
+      "src": "C:\\Users\\Илья\\Desktop\\projects\\node-course\\task2\\public\\assets\\img\\products\\Rectangle.jpg",
+      "name": "phonebook",
+      "price": 123
+    },
+    {
+      "src": "C:\\Users\\Илья\\Desktop\\projects\\node-course\\task2\\public\\assets\\img\\products\\Rectangle.png",
+      "name": "phonebook",
+      "price": 123
+    },
+    {
+      "src": "C:\\Users\\Илья\\Desktop\\projects\\node-course\\task2\\public\\assets\\img\\products\\image.png",
+      "name": "phonebook",
+      "price": 123
+    },
+    {
+      "src": "assets\\img\\products\\user-photo@2x.png",
+      "name": "phonebook",
+      "price": 123
+    },
+    {
+      "src": "assets\\img\\products\\user-photo.png",
+      "name": "phonebook",
+      "price": 222
+    },
+    {
+      "src": "assets\\img\\products\\image.png",
+      "name": "Ilya",
+      "price": 222
+    },
+    {
+      "src": "assets\\img\\products\\Rectangle.png",
+      "name": "phonebook",
+      "price": 222
+    },
+    {
+      "src": "assets\\img\\products\\user-photo@2x.png",
+      "name": "phonebook",
+      "price": 123
     }
   ]
 }

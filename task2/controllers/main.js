@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const db = require('../models/db');
+const db = require('../models/db')();
 
 const config = db.get('mail');
 
@@ -44,6 +44,16 @@ module.exports.main = (req, res, next) => {
 module.exports.getMain = (req, res, next) => {
     const products = db.get('products');
     const skills = db.get('mainSkills');
+    const currentSkills = db.get('skills');
+    
+
+    skills[0].number = currentSkills.age;
+    skills[1].number = currentSkills.concerts;
+    skills[2].number = currentSkills.cities;
+    skills[3].number = currentSkills.years;
+
+    db.set('mainSkills', skills);
+    db.save();
   
     res.render('pages/index', { title: 'Main page', products, skills })
 }
