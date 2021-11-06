@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env DATE_END=\"Wed Nov 06 2021 17:43:10 GMT+0500 (Екатеринбург, стандартное время)\" DELAY=2000 node index.js"
+    "start": "cross-env DATE_END=\"Wed Nov 06 2021 17:53:10 GMT+0500 (Екатеринбург, стандартное время)\" DELAY=2000 node index.js"
   },
   "keywords": [],
   "author": "",

@@ -5,22 +5,13 @@ const app = express();
 const DATE_END = process.env.DATE_END;
 const DELAY = process.env.DELAY;
 const PORT = 3000;
-let dateInterval = null;
 
 app.get('/date', (req, res, next) => {
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.setHeader('Transfer-Encoding', 'chunked');
+
+  let dateInterval;
   
-  if (dateInterval) {
-    clearInterval(dateInterval);
-  }
-
-  // setTimeout(() => {
-  //   clearInterval(dateInterval);
-  //   res.write(`Current date: ${new Date(new Date().toUTCString())}\n`);
-  //   res.end();
-  // }, +new Date(DATE_END) - +new Date(new Date()));
-
   setTimeout(() => {
     clearInterval(dateInterval);
     console.log(`Current date: ${new Date(new Date().toUTCString())}\n`);
