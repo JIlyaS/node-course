@@ -1,0 +1,131 @@
+{
+  "user": {
+    "login": "ilkolmakov@yandex.ru",
+    "hash": "bbbca400739f42230b94d6211076e907b115e92ac813afb5b76b1d5cfb9c7713c001f1ae574713f5939dad2a16f98451d6d54c4a4dcd8ff21fcff4cf9624a9efa04be22e28145dac2a784f76d1d659bc77495b1be97680ea732959a282035b4fbfcb3dbe42e58b22e03d5eb3f3ca823b0decbf245953544360a7c72e797b23511c3be770a19042364e27eccfd8b83e27bed72064a7ee41a54882ea21ece86ecee0c9e33b117a01819ec139c59d278b46fd0e2a33687a1929f30f1c313433f552a96c8f0c2cf127abae05a9725c9793b9c08fd80211e8cc09ca872c3c095f71a8ada598fcccad4bf7e09b4f46938494abbf86d7f9b9a999f20dd99c596f38f74259cf7f5bd03bc389f2cd9305d9422b3bd31774645cd9231bc4630487cd2f06e4987361b1c55829c25e787196e0bf31847f99425b8a6d32c0931d1f4bc2fbb4f595f78ef455a41267ac6f21d93a48e595c0e7c66b6e15eac833d129924fa51ee7b0c25dce80bc756973d503abc3a96474724bb0cc286437cfc4af02a3c4538d4cd825596334bfa13b72547f4860d1e41ade41f92da3ca97f98a58e0386f6b915332649bcf429b154ddcb970faab2beb771134a403e35779ad7aa8f54b5a307442beeb68fa6ac20d2f6feba1ca9d9d5d8a7dac93d1f14034e4a3369b11f20c57e417923fec91df0a8e763a49df17ea2f17d35c135ae41d1ac708e3aa19d2805682",
+    "salt": "5c15031d5a86ed08cd52dac1d6ce75a5"
+  },
+  "uploadFile": "",
+  "mail": {
+    "subject": "Сообщение с сайта",
+    "smtp": {
+      "host": "smtp.gmail.com",
+      "port": 465,
+      "secure": true,
+      "auth": {
+        "user": "iliakolmakovtest@gmail.com",
+        "pass": "IlyaKolmakov16061993"
+      }
+    }
+  },
+  "skills": {
+    "age": "42",
+    "concerts": "140",
+    "cities": "32",
+    "years": "16"
+  },
+  "mainSkills": [
+    {
+      "number": "42",
+      "text": "Возраст начала занятий на скрипке"
+    },
+    {
+      "number": "140",
+      "text": "Концертов отыграл"
+    },
+    {
+      "number": "32",
+      "text": "Максимальное число городов в туре"
+    },
+    {
+      "number": "16",
+      "text": "Лет на сцене в качестве скрипача"
+    }
+  ],
+  "products": [
+    {
+      "src": "./assets/img/products/Work1.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work2.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work3.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work4.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work5.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work6.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work7.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work8.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "./assets/img/products/Work9.jpg",
+      "name": "Вино вдохновение",
+      "price": 600
+    },
+    {
+      "src": "C:\\Users\\Илья\\Desktop\\projects\\node-course\\task2\\public\\assets\\img\\products\\Rectangle.jpg",
+      "name": "phonebook",
+      "price": 123
+    },
+    {
+      "src": "C:\\Users\\Илья\\Desktop\\projects\\node-course\\task2\\public\\assets\\img\\products\\Rectangle.png",
+      "name": "phonebook",
+      "price": 123
+    },
+    {
+      "src": "C:\\Users\\Илья\\Desktop\\projects\\node-course\\task2\\public\\assets\\img\\products\\image.png",
+      "name": "phonebook",
+      "price": 123
+    },
+    {
+      "src": "assets\\img\\products\\user-photo@2x.png",
+      "name": "phonebook",
+      "price": 123
+    },
+    {
+      "src": "assets\\img\\products\\user-photo.png",
+      "name": "phonebook",
+      "price": 222
+    },
+    {
+      "src": "assets\\img\\products\\image.png",
+      "name": "Ilya",
+      "price": 222
+    },
+    {
+      "src": "assets\\img\\products\\Rectangle.png",
+      "name": "phonebook",
+      "price": 222
+    },
+    {
+      "src": "assets\\img\\products\\user-photo@2x.png",
+      "name": "phonebook",
+      "price": 123
+    }
+  ]
+}

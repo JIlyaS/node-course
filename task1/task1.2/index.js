@@ -6,33 +6,28 @@ const DATE_END = process.env.DATE_END;
 const DELAY = process.env.DELAY;
 const PORT = 3000;
 
-let connections = [];
-
 app.get('/date', (req, res, next) => {
- res.setHeader('Content-Type', 'text/html; charset=utf-8');
- res.setHeader('Transfer-Encoding', 'chunked');
- connections.push(res);
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.setHeader('Transfer-Encoding', 'chunked');
 
- if (+new Date(new Date()) >= +new Date(DATE_END)) {
+  let dateInterval;
+  
+  setTimeout(() => {
+    clearInterval(dateInterval);
+    console.log(`Current date: ${new Date(new Date().toUTCString())}\n`);
     res.write(`Current date: ${new Date(new Date().toUTCString())}\n`);
     res.end();
- }
+    process.exit();
+  }, +new Date(DATE_END) - +new Date(new Date()));
+
+  dateInterval = setInterval(() => {
+    console.log(`${new Date(new Date().toUTCString())}`);
+    res.write(`Current date: ${new Date(new Date().toUTCString())}\n`);
+  }, DELAY);
+
 });
 
-setTimeout(function run () {
-  console.log(`${new Date(new Date().toUTCString())}`);
-  if (+new Date(new Date()) >= +new Date(DATE_END)) {
-    connections.map((res) => {
-        res.write(`Current date: ${new Date(new Date().toUTCString())}\n`);
-        res.end();
-    });
-    connections = [];
-  }
-  connections.map((res, index) => {
-    res.write(`${new Date(new Date().toUTCString())}\n`);
-  });
-  setTimeout(run, DELAY);
-}, DELAY);
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
