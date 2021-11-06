@@ -6,8 +6,8 @@ module.exports.getProfile = async (req, res, next) => {
 
   try {
     const user = await User.findById(String(req.user._id)).populate('permission');
-    console.log("🚀 ~ file: profile.js ~ line 9 ~ module.exports.getProfile= ~ user", user)
     return res.json({
+          id: user._id,
           username: user.username,
           firstName: user.firstName,
           surName: user.surName,

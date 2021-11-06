@@ -1,6 +1,13 @@
 const path = require('path');
 const fs = require('fs');
+
 const express = require('express');
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
+  allowEIO3: true
+});
+
 const morgan = require('morgan');
 const cons = require('consolidate');
 const cookieParser = require('cookie-parser');
@@ -10,9 +17,38 @@ const passportJWT = require('passport-jwt');
 const session = require('express-session');
 const mongoose = require('mongoose');
 
-// const io = require('socket.io').listen(8000);
-
 const User = require('./models/User');
+
+const clients = {};
+
+io.on("connection", (socket) => {
+  // console.log("🚀 ~ file: app.js ~ line 25 ~ io.on ~ socket", socket)
+  // socket.emit('users:connect', 'hi from server io!');
+  socket.on("users:connect", (user) => {
+    clients[socket.id] = {
+      username: user.username,
+      socketId: socket.id,
+      userId: user.userId,
+      activeRoom: null
+    };
+  });
+
+  socket.on("message:add", (message) => {
+    socket.emit("message:add", message); // ?
+  });
+
+  socket.emit("users:list", Object.values(clients));
+  socket.broadcast.emit('users:add', clients[socket.id]);
+
+  // socket.on("users:leave", (user) => {
+  //   console.log("🚀 ~ file: app.js ~ line 46 ~ socket.on ~ user", user)
+  // })
+
+  socket.on('disconnect', () => {
+    delete clients[socket.id];
+    socket.emit('users:leave', clients[socket.id]);
+  });
+});
 
 const uri = 'mongodb://localhost:27017/mongo-auth';
 
@@ -37,8 +73,6 @@ const JWTStrategy = passportJWT.Strategy;
 // const createError = require('http-errors');
 
 const mainRouter = require('./routes/')
-
-const app = express();
 
 app.use(session({
   store: new FileStore(),
@@ -113,10 +147,6 @@ app.get('*', (req, res) => {
   return res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
 
-// io.sockets.on('connection', (socket) => {
-//   socket.emit('users:connect', 'hi from server io');
-// });
-
 
 // catch 404 and forward to error handler
 // app.use((req, __, next) => {
@@ -134,7 +164,7 @@ app.use((err, req, res, next) => {
   res.send(err.message)
 })
 
-const server = app.listen(process.env.PORT || 3000, async () => {
+server.listen(process.env.PORT || 3000, async () => {
 
   // Создание папки upload, если её нет
   // const upload = path.join('./public', 'upload');
